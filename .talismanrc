@@ -1,0 +1,20 @@
+fileignoreconfig:
+  - filename: ios/.xcode.env
+    checksum: b38a48e7c3739b46abd9f520c7dc6ce4f9411cff1d98cb06aa0e941e2d8899d5
+  - filename: ios/ROJA_SWEETS.xcodeproj/xcshareddata/xcschemes/ROJA_SWEETS.xcscheme
+    checksum: 90291fa8ed80686255c811c5f77ca1a7a30a352d1be521a6f6018ad7a9881678
+  - filename: ios/Podfile.lock
+    checksum: ef56e26cd7359104346a4db517d94488e1f9f6f70c0d45fb893df87fb05441dd
+  - filename: ios/ROJA_SWEETS.xcodeproj/project.pbxproj
+    checksum: cd0da4bc352575681c2ba969f57cb9b568c3fc320bb094973434b9504777cdf4
+  - filename: yarn.lock
+    checksum: 3df2028a246e385683432ab86bc07d2bd736aab831018094b6f6d7e5f5a18b2d
+  - filename: android/app/build.gradle
+    checksum: 1e4fee3208de5fa1f96dcaacc5a395644276d7b046c3c67ac42ec9c6013dffdd
+  - filename: ios/ROJA_SWEETS/Info.plist
+    checksum: 29e9702b24bb1109697a431867be56cefe86c05d072d06245553a9eeea5b603e
+  - filename: ios/ROJA_SWEETS/LaunchScreen.storyboard
+    checksum: 9ed71ebc0eecf13de3fb81bd245860422f6cc174f6a4674c6afec56f32a636b3
+  - filename: ios/ROJA_SWEETSTests/Info.plist
+    checksum: 8bdaf8bbcbff9a0d73ab27ecf712f782d18dad6e77f761ee930549c1de28483b
+version: ''
