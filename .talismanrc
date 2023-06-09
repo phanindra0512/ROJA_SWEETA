@@ -1,20 +1,40 @@
 fileignoreconfig:
-  - filename: ios/.xcode.env
-    checksum: b38a48e7c3739b46abd9f520c7dc6ce4f9411cff1d98cb06aa0e941e2d8899d5
-  - filename: ios/ROJA_SWEETS.xcodeproj/xcshareddata/xcschemes/ROJA_SWEETS.xcscheme
-    checksum: 90291fa8ed80686255c811c5f77ca1a7a30a352d1be521a6f6018ad7a9881678
-  - filename: ios/Podfile.lock
-    checksum: ef56e26cd7359104346a4db517d94488e1f9f6f70c0d45fb893df87fb05441dd
+  - filename: ios/link-assets-manifest.json
+    checksum: 7e692ffec26cae541673cff681075e88d7377b5234a315fde869c07d5d313229
+  - filename: android/link-assets-manifest.json
+    checksum: af27638dab14bf439bf504afbf48b9488809225aeabd5f55df86e97ab8d78570
   - filename: ios/ROJA_SWEETS.xcodeproj/project.pbxproj
-    checksum: cd0da4bc352575681c2ba969f57cb9b568c3fc320bb094973434b9504777cdf4
+    checksum: ff052dc2dee0e2ef6c2179e024da6f2f12e6c1794e959679705404792f5c6948
   - filename: yarn.lock
-    checksum: 3df2028a246e385683432ab86bc07d2bd736aab831018094b6f6d7e5f5a18b2d
-  - filename: android/app/build.gradle
-    checksum: 1e4fee3208de5fa1f96dcaacc5a395644276d7b046c3c67ac42ec9c6013dffdd
+    checksum: 9cf7956bd2b033f0841707c99537fabadd602fe80becf912e9f8b9e62408b9e7
   - filename: ios/ROJA_SWEETS/Info.plist
-    checksum: 29e9702b24bb1109697a431867be56cefe86c05d072d06245553a9eeea5b603e
-  - filename: ios/ROJA_SWEETS/LaunchScreen.storyboard
-    checksum: 9ed71ebc0eecf13de3fb81bd245860422f6cc174f6a4674c6afec56f32a636b3
-  - filename: ios/ROJA_SWEETSTests/Info.plist
-    checksum: 8bdaf8bbcbff9a0d73ab27ecf712f782d18dad6e77f761ee930549c1de28483b
+    checksum: b29fc312fc87e068135da4265c272c41296d04b35f60c65cf402c9794f6d7dcf
+  - filename: src/screens/OTP/OTP.ui.tsx
+    checksum: b5a71774e4ea8642f1fd43abce408e6b9f69afcc0108cfda68f3b3685e2a7ad7
+  - filename: src/screens/MobileNumber/MobileNumber.ui.tsx
+    checksum: 3c3b9555a133998f488ada48955d620913ba41594c4b9c6963a5a43312c71798
+  - filename: src/components/RJCartItem/RJCartItem.ui.tsx
+    checksum: e46229f7e6b1c5dc2d3703d39a69ce9ce4a59b5814bc03f65a9d89a2c9d623ea
+  - filename: src/screens/Analytics/Analytics.ui.tsx
+    checksum: a2cc496e3646b2dc66d38ccfd98b30960eba9e5e49ed0e6dd7d4eaa97b991ae4
+  - filename: src/screens/ViewOrders/ViewOrders.ui.tsx
+    checksum: 421b9ba855b6d4e7d0cd6e28825c1d7e0cbcfbd3a5fbeeb25f6cc116aedd6619
+  - filename: src/components/RJInput/RJInput.ui.tsx
+    checksum: 884ef8f35a1b95515ad4f30ce2210be8c46c0cfe55a747456de12f26355d7765
+  - filename: src/screens/Categories/Categories.ui.tsx
+    checksum: a2e480dd71423cbaa163288d6ba37949879e20b832e0432bc07aafd3238f41f1
+  - filename: src/components/RJItemCard/RJItemCard.ui.tsx
+    checksum: ea02aca03a7676d2cee9d37cbf355b55c5aacca5e6427f9f5c5238d3e7d92b23
+  - filename: src/screens/CreateOrder/CreateOrder.ui.tsx
+    checksum: 4168535b90cfc06bf692a75b51efd6f2c9efac4d630b3f50112b114efb1823f4
+  - filename: src/screens/MyCart/MyCart.ui.tsx
+    checksum: e6307f0a064159ae300d848127c986554ab5f0454b00cf436fb51a5a085e896e
+  - filename: src/screens/CreateProfile/CreateProfile.ui.tsx
+    checksum: f77c234f6cd10c0104e84c8963c8cb3a780da32dd4e74e286c7aea7055875dbf
+  - filename: src/screens/MyInfo/MyInfo.ui.tsx
+    checksum: c01a6d227aaddfe69706c5d052249be572df32428b6887e662b638c02a742839
+  - filename: src/screens/Dashboard/Dashboard.ui.tsx
+    checksum: fb5ec29afacd2a51c3c93eb27b2403248f487b3144772af8b257d67c47b22b60
+  - filename: src/components/ImageCarousel/ImageCarousel.ui.tsx
+    checksum: 7aa079ad52daa0c62eb8f80f9c585825a0624d9669e8478d9684d5b4fc31bc8f
 version: ''
