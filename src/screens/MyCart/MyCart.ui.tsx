@@ -1,31 +1,61 @@
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import React from "react";
-import styles from "./MyCart.styles.ts";
-import { Header, RJCartItem } from "../../components";
-import { myCart } from "../../constants/MyCartItems.constants.ts";
-import COLOR from "../../assets/utils/Color";
-import AntDesign from "react-native-vector-icons/AntDesign";
-import { useSelector } from "react-redux";
+import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
+import React from 'react';
+import styles from './MyCart.styles.ts';
+import {Header, RJCartItem} from '../../components';
+import {myCart} from '../../constants/MyCartItems.constants.ts';
+import COLOR from '../../assets/utils/Color';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import {useSelector} from 'react-redux';
+import RazorpayCheckout from 'react-native-razorpay';
 
-const MyCart = ({ navigation, route }) => {
-  const dataInStore = useSelector((state) => state.myCart);
+var options = {
+  description: 'Credits towards consultation',
+  image: 'https://i.imgur.com/3g7nmJC.png',
+  currency: 'INR',
+  key: 'rzp_test_og4BBRJSPSxlaq', // Your api key
+  amount: '5000',
+  name: 'Phanindra',
+  prefill: {
+    email: 'void@razorpay.com',
+    contact: '9191919191',
+    name: 'Razorpay Software',
+  },
+  theme: {color: '#F37254'},
+};
+
+const MyCart = ({navigation, route}) => {
+  const dataInStore = useSelector(state => state.myCart);
 
   const navigateBack = () => {
     navigation.goBack();
   };
 
   const handleNextNavigation = () => {
-    navigation.navigate("Payment", {
+    navigation.navigate('Payment', {
       payableAmount: route.params.finalVal + 100,
     });
   };
+
+  const initilizePayment = () => {
+    RazorpayCheckout.open(options)
+      .then(data => {
+        // handle success
+        alert(`Success: ${data.razorpay_payment_id}`);
+        navigation.navigate('SuccessScreen');
+      })
+      .catch(error => {
+        // handle failure
+        alert(`Error: ${error.code} | ${error.description}`);
+      });
+  };
+
   const billDetails = () => {
     return (
       <View>
         <View style={styles.billCard}>
           <Text style={styles.title}>Item Total</Text>
           <Text style={styles.title}>
-            {"\u20B9"} {route.params.finalVal}
+            {'\u20B9'} {route.params.finalVal}
           </Text>
         </View>
 
@@ -33,15 +63,15 @@ const MyCart = ({ navigation, route }) => {
           <Text style={styles.title}>
             Delivery Fee <Text style={styles.star}>*</Text>
           </Text>
-          <Text style={styles.title}>{"\u20B9"} 100</Text>
+          <Text style={styles.title}>{'\u20B9'} 100</Text>
         </View>
 
-        <View style={[styles.billCard, { paddingTop: 25 }]}>
-          <Text style={[styles.title, { fontFamily: "Ubuntu-Bold" }]}>
+        <View style={[styles.billCard, {paddingTop: 25}]}>
+          <Text style={[styles.title, {fontFamily: 'Ubuntu-Bold'}]}>
             Total Payable
           </Text>
-          <Text style={[styles.title, { fontFamily: "Ubuntu-Bold" }]}>
-            {"\u20B9"} {route.params.finalVal + 100}
+          <Text style={[styles.title, {fontFamily: 'Ubuntu-Bold'}]}>
+            {'\u20B9'} {route.params.finalVal + 100}
           </Text>
         </View>
       </View>
@@ -52,30 +82,29 @@ const MyCart = ({ navigation, route }) => {
     return (
       <View style={styles.bottomContainer}>
         <View style={styles.amountContainer}>
-          <Text style={[styles.count, { fontSize: 18, paddingBottom: 3 }]}>
-            {"\u20B9"}
+          <Text style={[styles.count, {fontSize: 18, paddingBottom: 3}]}>
+            {'\u20B9'}
             {route.params.finalVal + 100}
           </Text>
           <Text style={styles.count}>View Details</Text>
         </View>
 
         <TouchableOpacity
-          onPress={handleNextNavigation}
-          style={styles.nextNavigation}
-        >
-          <Text style={[styles.count, { fontSize: 18 }]}>Proceed to pay</Text>
+          onPress={initilizePayment}
+          style={styles.nextNavigation}>
+          <Text style={[styles.count, {fontSize: 18}]}>Proceed to pay</Text>
           <AntDesign
             name="caretright"
             size={12}
             color={COLOR.white}
-            style={{ paddingTop: 4, paddingLeft: 3 }}
+            style={{paddingTop: 4, paddingLeft: 3}}
           />
         </TouchableOpacity>
       </View>
     );
   };
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{flex: 1}}>
       <Header
         leftIcon="arrow-back"
         headerTitle="Cart"
