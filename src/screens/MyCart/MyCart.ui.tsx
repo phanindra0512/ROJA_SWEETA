@@ -20,10 +20,14 @@ var options = {
     contact: '9191919191',
     name: 'Razorpay Software',
   },
-  theme: {color: '#F37254'},
+  theme: {color: COLOR.buttonSolid},
 };
 
+const deliveryFee = 100;
+
 const MyCart = ({navigation, route}) => {
+  const orderDataToStore = {};
+
   const dataInStore = useSelector(state => state.myCart);
 
   const navigateBack = () => {
@@ -36,11 +40,22 @@ const MyCart = ({navigation, route}) => {
     });
   };
 
+  const storeData = data => {
+    orderDataToStore.orderItems = dataInStore;
+    orderDataToStore.orderTotal = route.params.finalVal;
+    orderDataToStore.deliveryFee = deliveryFee;
+    orderDataToStore.orderId = 'RJ_12345';
+    orderDataToStore.paymentStatus = 'SUCCESS';
+    orderDataToStore.paymentId = data.razorpay_payment_id;
+    console.log('orderDataToStore ===> ', orderDataToStore);
+  };
+
   const initilizePayment = () => {
     RazorpayCheckout.open(options)
       .then(data => {
         // handle success
-        alert(`Success: ${data.razorpay_payment_id}`);
+        console.log('PAYMEWNT ----> ', data);
+        storeData(data);
         navigation.navigate('SuccessScreen');
       })
       .catch(error => {
@@ -63,7 +78,9 @@ const MyCart = ({navigation, route}) => {
           <Text style={styles.title}>
             Delivery Fee <Text style={styles.star}>*</Text>
           </Text>
-          <Text style={styles.title}>{'\u20B9'} 100</Text>
+          <Text style={styles.title}>
+            {'\u20B9'} {deliveryFee}
+          </Text>
         </View>
 
         <View style={[styles.billCard, {paddingTop: 25}]}>

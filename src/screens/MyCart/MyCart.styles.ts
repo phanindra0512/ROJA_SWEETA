@@ -1,12 +1,12 @@
-import { StyleSheet, Dimensions } from "react-native";
-import COLOR from "../../assets/utils/Color";
+import {StyleSheet, Dimensions} from 'react-native';
+import COLOR from '../../assets/utils/Color';
 
-const windowWidth = Dimensions.get("window").width;
+const windowWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   heading: {
     fontSize: 16.5,
-    fontFamily: "Ubuntu-Medium",
+    fontFamily: 'Ubuntu-Medium',
     color: COLOR.dullBlack,
     padding: 10,
   },
@@ -14,23 +14,23 @@ const styles = StyleSheet.create({
     width: windowWidth - 20,
     backgroundColor: COLOR.white,
     borderRadius: 15,
-    alignSelf: "center",
+    alignSelf: 'center',
   },
-  title: { fontSize: 16, fontFamily: "Ubuntu-Regular", color: COLOR.black },
+  title: {fontSize: 16, fontFamily: 'Ubuntu-Regular', color: COLOR.black},
   billCard: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     paddingHorizontal: 15,
     paddingVertical: 10,
   },
   star: {
-    color: "red",
+    color: 'red',
   },
   addressDetails: {
     backgroundColor: COLOR.white,
-    position: "absolute",
-    bottom: 0,
+    position: 'absolute',
+    bottom: 10,
     left: 5,
     right: 5,
     borderTopRightRadius: 15,
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   },
   address: {
     fontSize: 14,
-    fontFamily: "Ubuntu-Regular",
+    fontFamily: 'Ubuntu-Regular',
     color: COLOR.darkGray,
     paddingLeft: 10,
     paddingBottom: 10,
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 
   bottomContainer: {
     height: 60,
-    flexDirection: "row",
+    flexDirection: 'row',
     marginHorizontal: 10,
     borderRadius: 7,
     backgroundColor: COLOR.buttonSolid,
@@ -54,15 +54,15 @@ const styles = StyleSheet.create({
 
   amountContainer: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: 'center',
     paddingLeft: 10,
   },
-  count: { fontSize: 13, fontFamily: "Ubuntu-Medium", color: COLOR.white },
+  count: {fontSize: 13, fontFamily: 'Ubuntu-Medium', color: COLOR.white},
   nextNavigation: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "flex-end",
-    flexDirection: "row",
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    flexDirection: 'row',
     paddingRight: 20,
   },
 });
