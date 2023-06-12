@@ -1,42 +1,55 @@
+/* eslint-disable react-native/no-inline-styles */
 import {View, Text, ScrollView} from 'react-native';
 import React from 'react';
 import styles from './OrderDetails.styles.ts';
 import {Header, RJSquareButton, VerticalLine} from '../../components';
 import COLOR from '../../assets/utils/Color';
 
-const OrderDetails = ({navigation}) => {
+const OrderDetails = ({navigation, route}) => {
+  const {orderData} = route.params;
   const navigateBack = () => {
     navigation.goBack();
   };
+  const grandTotal = orderData.orderItems.map(item => {
+    return item.productCount * item.productPrice;
+  });
+  finalVal = grandTotal.reduce((acc, curr) => acc + curr, 0);
 
   const orderItems = () => {
     return (
-      <View
-        style={{
-          flexDirection: 'row',
-          // backgroundColor: "red",
-          justifyContent: 'space-between',
-          paddingHorizontal: 10,
-          paddingTop: 10,
-        }}>
-        <View style={{flexDirection: 'row'}}>
-          <RJSquareButton />
-          <View style={{paddingLeft: 15}}>
-            <Text style={styles.prodName}>Chekodi</Text>
-            <Text style={styles.subText}>Small</Text>
-            <Text style={[styles.prodName, {color: COLOR.dullBlack}]}>
-              10 x {'\u20B9'} 100
-            </Text>
-          </View>
-        </View>
-        <Text
-          style={[
-            styles.prodName,
-            {alignSelf: 'flex-end', color: COLOR.dullBlack},
-          ]}>
-          {'\u20B9'} 1000
-        </Text>
-      </View>
+      <>
+        {orderData.orderItems.map(orderItem => {
+          return (
+            <View
+              style={{
+                flexDirection: 'row',
+                // backgroundColor: "red",
+                justifyContent: 'space-between',
+                paddingHorizontal: 10,
+                paddingTop: 10,
+              }}>
+              <View style={{flexDirection: 'row'}}>
+                <RJSquareButton />
+                <View style={{paddingLeft: 15}}>
+                  <Text style={styles.prodName}>{orderItem.productName}</Text>
+                  <Text style={styles.subText}>{orderItem.size}</Text>
+                  <Text style={[styles.prodName, {color: COLOR.dullBlack}]}>
+                    {orderItem.productCount} x {'\u20B9'}{' '}
+                    {orderItem.productPrice}
+                  </Text>
+                </View>
+              </View>
+              <Text
+                style={[
+                  styles.prodName,
+                  {alignSelf: 'flex-end', color: COLOR.dullBlack},
+                ]}>
+                {'\u20B9'} {orderItem.productCount * orderItem.productPrice}
+              </Text>
+            </View>
+          );
+        })}
+      </>
     );
   };
 
@@ -45,21 +58,25 @@ const OrderDetails = ({navigation}) => {
       <View>
         <View style={[styles.costContainer, {paddingTop: 0}]}>
           <Text style={styles.prodName}>Item Total</Text>
-          <Text style={styles.prodName}>{'\u20B9'} 1500</Text>
+          <Text style={styles.prodName}>
+            {'\u20B9'} {finalVal}
+          </Text>
         </View>
         <View style={[styles.costContainer, {paddingVertical: 0}]}>
           <Text style={[styles.subText, {color: COLOR.dullBlack}]}>
             Delivery fee
           </Text>
           <Text style={[styles.subText, {color: COLOR.dullBlack}]}>
-            {'\u20B9'} 100
+            {'\u20B9'} {orderData.deliveryFee}
           </Text>
         </View>
         <VerticalLine />
 
         <View style={styles.costContainer}>
           <Text style={[styles.prodName, {fontSize: 17}]}>Total Payable</Text>
-          <Text style={[styles.prodName, {fontSize: 17}]}>{'\u20B9'} 1600</Text>
+          <Text style={[styles.prodName, {fontSize: 17}]}>
+            {'\u20B9'} {finalVal + orderData.deliveryFee}
+          </Text>
         </View>
       </View>
     );
@@ -70,7 +87,7 @@ const OrderDetails = ({navigation}) => {
       <View>
         <View style={{paddingTop: 15}}>
           <Text style={styles.ordertitle}>Order Number</Text>
-          <Text style={styles.orderContent}>#123456789</Text>
+          <Text style={styles.orderContent}>{orderData.orderId}</Text>
         </View>
 
         <View style={{paddingTop: 15}}>
@@ -80,14 +97,15 @@ const OrderDetails = ({navigation}) => {
 
         <View style={{paddingTop: 15}}>
           <Text style={styles.ordertitle}>Date</Text>
-          <Text style={styles.orderContent}>22 aug 2022, 5:20 PM</Text>
+          <Text style={styles.orderContent}>
+            {orderData.orderDate}, {orderData.orderTime}
+          </Text>
         </View>
 
         <View style={{paddingTop: 15}}>
           <Text style={styles.ordertitle}>Delivery to</Text>
           <Text numberOfLines={2} style={styles.orderContent}>
-            23b-7-21,Vasa vari street,opp.thrinath fashions,upstair DTDC courier
-            service,RRPeta,Eluru
+            {orderData.deliveryAddress}
           </Text>
         </View>
       </View>
@@ -114,15 +132,17 @@ const OrderDetails = ({navigation}) => {
             style={[
               styles.statusContainer,
               {
-                backgroundColor: COLOR.green,
+                backgroundColor:
+                  orderData.orderStatus === 'Delivered'
+                    ? COLOR.green
+                    : COLOR.warning,
               },
             ]}>
-            <Text style={styles.status}>Delivered</Text>
+            <Text style={styles.status}>{orderData.orderStatus}</Text>
           </View>
         </View>
 
         <View style={styles.itemsCard}>
-          {orderItems()}
           {orderItems()}
           <VerticalLine />
           {amountContainer()}

@@ -175,7 +175,7 @@ const Dashboard = ({navigation}) => {
           return (
             <TouchableOpacity
               onPress={() =>
-                handleServiceNavigation(STRINGS.RECENT_TRANSACTIONS)
+                handleServiceNavigation(STRINGS.RECENT_TRANSACTIONS, item)
               }
               key={item.id}
               style={styles.transactionCard}>
@@ -187,14 +187,20 @@ const Dashboard = ({navigation}) => {
                 />
               </View>
               <View style={styles.orderContent}>
-                <Text style={styles.orderId}>{item.orderID}</Text>
+                <Text style={styles.orderId}>{item.orderId}</Text>
                 <Text style={styles.orderDate}>
                   {item.orderDate},{item.orderTime}
                 </Text>
               </View>
               <View style={styles.amountContainer}>
                 <Text style={styles.amount}>
-                  {'\u20B9'} {item.orderTotal}
+                  {'\u20B9'}{' '}
+                  {item.orderItems
+                    .map(item => {
+                      return item.productCount * item.productPrice;
+                    })
+                    .reduce((partialSum, a) => partialSum + a, 0) +
+                    item.deliveryFee}
                 </Text>
               </View>
             </TouchableOpacity>
@@ -217,7 +223,7 @@ const Dashboard = ({navigation}) => {
     } else if (title === STRINGS.VIEW_ORDERS) {
       navigation.navigate('ViewOrders');
     } else if (title === STRINGS.RECENT_TRANSACTIONS) {
-      navigation.navigate('OrderDetails');
+      navigation.navigate('OrderDetails', {orderData: itemData});
     } else if (title === STRINGS.POPULAR_ITEMS) {
       navigation.navigate('ItemDetail', {data: itemData});
     } else if (title === 'MyProfile') {

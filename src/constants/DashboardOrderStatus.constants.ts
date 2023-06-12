@@ -1,21 +1,22 @@
-import STRINGS from "../screens/Dashboard/Dashboard.strings";
+import STRINGS from '../screens/Dashboard/Dashboard.strings';
+import {myOrders} from './MyOrders.constants';
 
 export const DashboardOrderStatus = [
   {
     id: 1,
-    iconName: "stats-chart",
+    iconName: 'stats-chart',
     orderTitle: STRINGS.TOTAL,
-    orderCount: 22,
+    orderCount: myOrders.length,
   },
   {
     id: 2,
-    iconName: "timer-sharp",
+    iconName: 'timer-sharp',
     orderTitle: STRINGS.IN_PROGRESS,
-    orderCount: 2,
+    orderCount: 1,
   },
   {
     id: 3,
-    iconName: "ios-checkbox-sharp",
+    iconName: 'ios-checkbox-sharp',
     orderTitle: STRINGS.COMPLETED,
     orderCount: 20,
   },
@@ -24,12 +25,12 @@ export const DashboardOrderStatus = [
 export const myServices = [
   {
     id: 1,
-    image: require("../assets/images/createOrder.png"),
+    image: require('../assets/images/createOrder.png'),
     title: STRINGS.CREATE_ORDER,
   },
   {
     id: 2,
-    image: require("../assets/images/myOrders.png"),
+    image: require('../assets/images/myOrders.png'),
     title: STRINGS.VIEW_ORDERS,
   },
 ];
