@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -9,30 +9,39 @@ import {
   Dimensions,
   ToastAndroid,
   ActivityIndicator,
-} from "react-native";
-import styles from "./OTP.styles.ts";
-import { RJInput, RJButton, LoadingIndicator } from "../../components";
-import STRINGS from "./OTP.strings.ts";
-import COLOR from "../../assets/utils/Color";
+} from 'react-native';
+import styles from './OTP.styles.ts';
+import {RJInput, RJButton, LoadingIndicator} from '../../components';
+import STRINGS from './OTP.strings.ts';
+import COLOR from '../../assets/utils/Color';
 
-const ScreenHeight = Dimensions.get("window").height;
+const ScreenHeight = Dimensions.get('window').height;
 
-const OTP = ({ navigation }) => {
-  const [isCode, setIsCode] = useState(null);
-  const [isOtp, setIsOtp] = useState("");
+const OTP = ({navigation, route}) => {
+  const [isCode, setIsCode] = useState(route?.params?.OTPData);
+  const [isOtp, setIsOtp] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 3000);
   }, []);
 
-  const onChangeEvent = (text) => {
+  const onChangeEvent = text => {
     setIsOtp(text);
     console.log(text);
   };
+
+  const verifyCode = async () => {
+    try {
+      await isCode.confirm(isOtp);
+    } catch (error) {
+      console.log('Invalid code.');
+    }
+  };
   const onPressEvent = () => {
-    console.log("Button clicked");
-    navigation.navigate("CreateProfile");
+    console.log('Button clicked');
+    navigation.navigate('CreateProfile');
+    // verifyCode();
     // if (isCode == isOtp) {
     //   navigation.navigate("CreateProfile");
     //   console.log("valid code");
@@ -42,25 +51,25 @@ const OTP = ({ navigation }) => {
     // }
   };
 
-  useEffect(() => {
-    generateOtp();
-  }, []);
+  // useEffect(() => {
+  //   generateOtp();
+  // }, []);
 
-  const generateOtp = (value) => {
-    const val = Math.floor(1000 + Math.random() * 9000);
-    setIsCode(val);
-    value && ToastAndroid.show("OTP sent successfully", ToastAndroid.SHORT);
-    console.log(val);
-  };
+  // const generateOtp = value => {
+  //   const val = Math.floor(1000 + Math.random() * 9000);
+  //   setIsCode(val);
+  //   value && ToastAndroid.show('OTP sent successfully', ToastAndroid.SHORT);
+  //   console.log(val);
+  // };
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="height">
       <ScrollView>
-        <View style={{ height: ScreenHeight }}>
+        <View style={{height: ScreenHeight}}>
           <View style={styles.contentBlock}>
             <Image
-              source={require("../../assets/images/otp.png")}
-              style={{ width: 250, height: 250 }}
+              source={require('../../assets/images/otp.png')}
+              style={{width: 250, height: 250}}
             />
             <Text style={styles.heading}>{STRINGS.OTP_VERIFICATION}</Text>
             <Text style={styles.subHeading}>{STRINGS.OTP_VERIFY_TEXT}</Text>
@@ -70,15 +79,14 @@ const OTP = ({ navigation }) => {
               placeholder={STRINGS.PLACEHOLDER_TEXT}
               value={isOtp}
               onChangeText={onChangeEvent}
-              keyboardType={"number-pad"}
-              maxLength={4}
+              keyboardType={'number-pad'}
+              maxLength={5}
             />
-            <View style={{ flexDirection: "row", marginTop: 10 }}>
+            <View style={{flexDirection: 'row', marginTop: 10}}>
               <Text style={styles.subHeading}>{STRINGS.DIDNT_RECEIVE_OTP}</Text>
               <Text
-                onPress={() => generateOtp("resend")}
-                style={[styles.subHeading, { color: COLOR.buttonSolid }]}
-              >
+                onPress={() => generateOtp('resend')}
+                style={[styles.subHeading, {color: COLOR.buttonSolid}]}>
                 {STRINGS.RESEND}
               </Text>
             </View>

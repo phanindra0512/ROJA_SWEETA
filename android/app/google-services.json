@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1022979388372",
+    "project_id": "rojasweets",
+    "storage_bucket": "rojasweets.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022979388372:android:98f0c2174e32dcaddb9c41",
+        "android_client_info": {
+          "package_name": "com.roja_sweets"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1022979388372-r8q67csla5r3l8vv4onidut252co3dn2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.roja_sweets",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "1022979388372-v1o98fq2vra1j9clgr0t59bahsue40d6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfl5tb0cDo-vvsdlTXIVdDqkswnkfiGYM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1022979388372-v1o98fq2vra1j9clgr0t59bahsue40d6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

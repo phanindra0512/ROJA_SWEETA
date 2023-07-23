@@ -5,27 +5,28 @@ import {Header, RJCartItem} from '../../components';
 import {myCart} from '../../constants/MyCartItems.constants.ts';
 import COLOR from '../../assets/utils/Color';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import RazorpayCheckout from 'react-native-razorpay';
-
-var options = {
-  description: 'Credits towards consultation',
-  image: 'https://i.imgur.com/3g7nmJC.png',
-  currency: 'INR',
-  key: 'rzp_test_og4BBRJSPSxlaq', // Your api key
-  amount: '5000',
-  name: 'Phanindra',
-  prefill: {
-    email: 'void@razorpay.com',
-    contact: '9191919191',
-    name: 'Razorpay Software',
-  },
-  theme: {color: COLOR.buttonSolid},
-};
-
+import {clearCart} from '../../redux/actions/cartCounterAction.js';
 const deliveryFee = 100;
 
 const MyCart = ({navigation, route}) => {
+  const dispatch = useDispatch();
+
+  var options = {
+    description: 'Credits towards consultation',
+    image: 'https://i.imgur.com/3g7nmJC.png',
+    currency: 'INR',
+    key: 'rzp_test_og4BBRJSPSxlaq', // Your api key
+    amount: (route.params.finalVal + deliveryFee) * 100,
+    name: 'Phanindra',
+    prefill: {
+      email: 'void@razorpay.com',
+      contact: '9191919191',
+      name: 'Razorpay Software',
+    },
+    theme: {color: COLOR.buttonSolid},
+  };
   const orderDataToStore = {};
 
   const dataInStore = useSelector(state => state.myCart);
@@ -56,7 +57,13 @@ const MyCart = ({navigation, route}) => {
         // handle success
         console.log('PAYMEWNT ----> ', data);
         storeData(data);
-        navigation.navigate('SuccessScreen');
+        navigation.navigate('SuccessScreen', {
+          orderDetails: {
+            transactionId: data.razorpay_payment_id,
+            orderAmount: route.params.finalVal + deliveryFee,
+          },
+        });
+        dispatch(clearCart());
       })
       .catch(error => {
         // handle failure

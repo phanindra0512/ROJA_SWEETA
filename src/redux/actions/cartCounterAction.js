@@ -29,3 +29,10 @@ export const deleteFromCart = (data) => {
     data,
   };
 };
+
+
+export const clearCart = () => {
+  return {
+    type: "CLEAR_CART",
+  };
+};

@@ -1,23 +1,23 @@
-import { View, Text, Image, BackHandler } from "react-native";
-import React from "react";
-import styles from "./SuccessScreen.styles.ts";
-import COLOR from "../../assets/utils/Color";
-import STRINGS from "./Success.strings.ts";
-import { VerticalLine, RJButton } from "../../components";
-import { useFocusEffect, useRoute } from "@react-navigation/native";
+import {View, Text, Image, BackHandler} from 'react-native';
+import React from 'react';
+import styles from './SuccessScreen.styles.ts';
+import COLOR from '../../assets/utils/Color';
+import STRINGS from './Success.strings.ts';
+import {VerticalLine, RJButton} from '../../components';
+import {useFocusEffect, useRoute} from '@react-navigation/native';
 
 const transactionStatus = {
   id: 1,
   transactionNumber: 123456,
   transactionAmount: 1600,
-  transactionType: "UPI PAY",
-  transactionDate: "22 aug 2022, 5:20 PM",
+  transactionType: 'UPI PAY',
+  transactionDate: '22 aug 2022, 5:20 PM',
 };
-const SuccessScreen = ({ navigation }) => {
+const SuccessScreen = ({navigation}) => {
   const route = useRoute();
 
   const onPressEvent = () => {
-    navigation.navigate("ViewOrders");
+    navigation.navigate('ViewOrders');
   };
 
   // useFocusEffect(
@@ -39,21 +39,20 @@ const SuccessScreen = ({ navigation }) => {
       <View
         style={{
           flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
         <Image
-          source={require("../../assets/images/success.png")}
-          style={{ width: 140, height: 140, alignSelf: "center" }}
+          source={require('../../assets/images/success.png')}
+          style={{width: 140, height: 140, alignSelf: 'center'}}
         />
 
         <View style={styles.contentContainer}>
           <Text style={styles.success}>{STRINGS.ORDER_PLACED}</Text>
-          <Text style={[styles.subContent, { paddingTop: 15 }]}>
+          <Text style={[styles.subContent, {paddingTop: 15}]}>
             {STRINGS.SUB_TEXT1}
           </Text>
-          <Text style={[styles.subContent, { paddingTop: 4 }]}>
+          <Text style={[styles.subContent, {paddingTop: 4}]}>
             {STRINGS.SUB_TEXT2}
           </Text>
         </View>
@@ -68,14 +67,14 @@ const SuccessScreen = ({ navigation }) => {
           <Text style={styles.transactionContent}>
             {STRINGS.TOTAL_AMOUNT_PAID}
           </Text>
-          <Text style={[styles.transactionContent, { color: COLOR.black }]}>
-            {transactionStatus.transactionAmount}
+          <Text style={[styles.transactionContent, {color: COLOR.black}]}>
+            {route.params.orderDetails.orderAmount}
           </Text>
         </View>
         <VerticalLine />
         <View style={styles.amountCard}>
           <Text style={styles.transactionContent}>{STRINGS.PAYED_BY}</Text>
-          <Text style={[styles.transactionContent, { color: COLOR.black }]}>
+          <Text style={[styles.transactionContent, {color: COLOR.black}]}>
             {transactionStatus.transactionType}
           </Text>
         </View>
@@ -84,7 +83,7 @@ const SuccessScreen = ({ navigation }) => {
           <Text style={styles.transactionContent}>
             {STRINGS.TRANSACTION_DATE}
           </Text>
-          <Text style={[styles.transactionContent, { color: COLOR.black }]}>
+          <Text style={[styles.transactionContent, {color: COLOR.black}]}>
             {transactionStatus.transactionDate}
           </Text>
         </View>
@@ -92,21 +91,21 @@ const SuccessScreen = ({ navigation }) => {
     );
   };
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{flex: 1}}>
       {successContent()}
       <View>
         <VerticalLine />
         <Text
           style={[
             styles.transactionContent,
-            { paddingTop: 15, paddingBottom: 30, color: COLOR.buttonSolid },
-          ]}
-        >
-          {STRINGS.TRANSACTION_NUMBER} : {transactionStatus.transactionNumber}
+            {paddingTop: 15, paddingBottom: 30, color: COLOR.buttonSolid},
+          ]}>
+          {STRINGS.TRANSACTION_NUMBER} :{' '}
+          {route.params.orderDetails.transactionId}
         </Text>
       </View>
 
-      <View style={{ flex: 1 }}>{transactionDetails()}</View>
+      <View style={{flex: 1}}>{transactionDetails()}</View>
       <RJButton
         title={STRINGS.VIEW_ORDER}
         style={styles.button}

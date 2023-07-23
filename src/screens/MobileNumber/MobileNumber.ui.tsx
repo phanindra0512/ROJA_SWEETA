@@ -12,20 +12,39 @@ import styles from './MobileNumber.styles.ts';
 import {RJInput, RJButton, LoadingIndicator} from '../../components';
 import STRINGS from './MobileNumber.strings.ts';
 import axios from 'axios';
+import auth from '@react-native-firebase/auth';
 
 const ScreenHeight = Dimensions.get('window').height;
 
 const MobileNumber = ({navigation}) => {
   const [isName, setIsName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [confirm, setConfirm] = useState(null);
 
   const onChangeEvent = text => {
     setIsName(text);
     console.log(text);
   };
 
+  const sendOTP = async phoneNumber => {
+    await auth()
+      .signInWithPhoneNumber('+91' + phoneNumber)
+      .then(data => {
+        setConfirm(data);
+        console.log('phani ===> ', JSON.stringify(data));
+        setIsLoading(false);
+        navigation.navigate('OTP', {OTPData: data});
+      })
+      .catch(err => {
+        console.log('Error ===> ', err);
+        setIsLoading(false);
+        alert('something went wrong, please try again');
+      });
+  };
+
   const onPressEvent = () => {
     setIsLoading(true);
+    // sendOTP(isName);
     setTimeout(() => navigateScreen(), 1000);
   };
 
@@ -56,6 +75,8 @@ const MobileNumber = ({navigation}) => {
             />
             <Text style={styles.heading}>{STRINGS.ENTER_MOBILE_NUMBER}</Text>
             <Text style={styles.subHeading}>{STRINGS.CODE_VERIFY_TEXT}</Text>
+
+            <Text>This is sample text</Text>
           </View>
           <View style={styles.inputBlock}>
             <RJInput
