@@ -86,6 +86,9 @@ const MobileNumber = ({navigation}) => {
             <Text>This is sample text8</Text>
             <Text>This is sample text9</Text>
             <Text>This is sample text10</Text>
+            <Text>This is sample text11</Text>
+            <Text>This is sample text12</Text>
+            <Text>This is sample text13</Text>
           </View>
           <View style={styles.inputBlock}>
             <RJInput
