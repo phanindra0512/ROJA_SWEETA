@@ -82,7 +82,10 @@ const MobileNumber = ({navigation}) => {
             <Text>This is sample text4</Text>
             <Text>This is sample text5</Text>
             <Text>This is sample text6</Text>
-            <Text>This is sample text7</Text>;
+            <Text>This is sample text7</Text>
+            <Text>This is sample text8</Text>
+            <Text>This is sample text9</Text>
+            <Text>This is sample text10</Text>
           </View>
           <View style={styles.inputBlock}>
             <RJInput
