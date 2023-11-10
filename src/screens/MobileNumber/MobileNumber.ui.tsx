@@ -75,8 +75,20 @@ const MobileNumber = ({navigation}) => {
             />
             <Text style={styles.heading}>{STRINGS.ENTER_MOBILE_NUMBER}</Text>
             <Text style={styles.subHeading}>{STRINGS.CODE_VERIFY_TEXT}</Text>
-
             <Text>This is sample text</Text>
+            <Text>This is sample text1</Text>
+            <Text>This is sample text2</Text>
+            <Text>This is sample text3</Text>
+            <Text>This is sample text4</Text>
+            <Text>This is sample text5</Text>
+            <Text>This is sample text6</Text>
+            <Text>This is sample text7</Text>
+            <Text>This is sample text8</Text>
+            <Text>This is sample text9</Text>
+            <Text>This is sample text10</Text>
+            <Text>This is sample text11</Text>
+            <Text>This is sample text12</Text>
+            <Text>This is sample text13</Text>
           </View>
           <View style={styles.inputBlock}>
             <RJInput
